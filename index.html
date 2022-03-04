@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weathered</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.scss">
+    <script src="script.ts" type="module" defer></script>
+</head>
+<body>
+    <div id="loader"></div>
+    <header class="header">
+        <div class="header__city">
+            <p id="city-display">Welcome</p>
+        </div>
+        <div class="header__date">
+            <p id="date-display">8 February 2022</p>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main__search">
+            <input class="main__search__searchbar" type="text" placeholder="What city are we looking for?" autofocus>
+            <input class="main__search__submit-button" type="submit" value="Submit">
+        </div>
+        <div class="main__temperature">
+            <span class="material-icons">wb_sunny</span>
+            <span id="temperature-display">20<p>°C</p></span>
+            
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__predictions">
+            <div class="prediction" id="day1">
+                <span class="prediction-date">9 February</span>
+                <span class="tempterature-display-prediction">16°C</span>
+            </div>
+            <div class="prediction" id="day2">
+                <span class="prediction-date">10 February</span>
+                <span class="tempterature-display-prediction">18°C</span>
+            </div>
+            <div class="prediction" id="day3">
+                <span class="prediction-date">11 February</span>
+                <span class="tempterature-display-prediction">18°C</span>
+            </div>
+            <div class="prediction" id="day4">
+                <span class="prediction-date">12 February</span>
+                <span class="tempterature-display-prediction">18°C</span>
+            </div>
+        </div>
+        <div class="footer__foot">
+            <p class="footer__foot__signature">Weathered by <a href="https://github.com/ondrejhabina" target="_blank">Ondřej Habina</a></p>
+        </div>
+    </footer>
+</body>
+</html>

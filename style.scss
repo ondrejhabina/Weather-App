@@ -1,0 +1,243 @@
+@import 'config';
+
+html {
+    background-color: #01193a;
+}
+
+@include reset;
+
+* {
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+//loader
+
+
+@-webkit-keyframes wave {
+    0% {
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+@keyframes wave {
+    0% {
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+
+#loader {
+    width: 250px;
+    height: 250px;
+    background-color: skyblue;
+    opacity: 70%;
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50vw - 125px);
+    top: calc(50vh - 125px);
+    transition: opacity 1s ease;
+    overflow: hidden;
+}
+
+#loader::before, #loader::after {
+    content: '';
+    width: 250px;
+    height: 250px;
+    
+}
+
+#loader::before {
+    border-radius: 47%;
+    position: absolute;
+    bottom: 100px;
+    background: rgb(162, 215, 236);
+    animation: wave 5s infinite;
+}
+
+#loader::after {
+    border-radius: 35%;
+    position: absolute;
+    bottom: 120px;
+    background: rgb(255, 255, 255);
+    animation: wave 5s infinite;
+}
+
+.main-content {
+    display: none;
+}
+
+body {
+    width: 100%;
+    background: #010101;
+    background: -webkit-radial-gradient(top left, #010101, $light-blue);
+    background: -moz-radial-gradient(top left, #010101, $light-blue);
+    background: radial-gradient(to bottom right, #010101, $light-blue);
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+
+.header {
+    opacity: 0;
+    transition: opacity 2s ease;
+    background-color: $light-blue;
+    display: flex;
+    flex-direction: column;
+    &__city {
+        align-self: center;
+        padding: 3vh;
+        font-size: clamp(4vmax, 4vmax + 2rem , 6vmax);
+        color: white;
+    }
+
+    &__date {
+        align-self: center;
+        padding: 3vh;
+        font-size: 2vmax;
+    }
+}
+
+.main {
+    opacity: 0;
+    transition: opacity 2s ease;
+    display: flex;
+    flex-direction: column;
+    &__search {
+        padding: 5vh;
+        align-self: center;
+        display: flex;
+        flex-direction: row;
+        gap: 4vw;
+        &__searchbar {
+            background: none;
+            color: white;
+            text-align: center;
+            height: 40px;
+            border-radius: 20px;
+            width: 200px;
+        }
+
+        &__searchbar:focus {
+            outline: none;
+        }
+
+        &__submit-button {
+            height: 40px;
+            width: 150px;
+            border-radius: 20px;
+        }
+    }
+    &__temperature {
+        font-size: clamp(8vmax, 10vw + 1rem, 5rem);
+        padding: 5vh;
+        align-self: center;
+        display: flex;
+        flex-direction: row;
+        align-self: center;
+        p {
+            font-size: clamp(8vmax, 10vw + 1rem, 5rem);
+            align-self: center;
+        }
+    }
+}
+
+.footer {
+    transition: opacity 2s ease;
+    opacity: 0;
+    background-color: $light-blue;
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(1vmax, 1vmax + 1rem, 2vmax);
+    margin-top: 3vh;
+    &__predictions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        .prediction {
+            font-size: clamp(2rem, 1vmax + 1rem, 3rem);
+            padding: 4vh;
+            width: 18vw;
+            display: flex;
+            flex-direction: column;
+            span {
+                align-self: center;
+            }
+            &-date {
+                display: inline;
+                min-width: 105px;
+            }
+        }
+    }
+    &__foot {
+        background-color: white;
+        width: 100vw;
+        font-size: 30px;
+        padding: 1vh;
+        display: flex;
+        justify-content: center;
+        &__signature {
+            color: $light-blue;
+            a {
+                font-weight: bold;
+                color: $light-blue;
+            }
+        }
+    }
+}
+
+#temperature-display {
+    display: flex;
+    flex-direction: row;
+}
+
+.tempterature-display-prediction {
+    color: white;
+}
+
+.material-icons {
+    font-size: clamp(6vmax, 8vw + 1rem, 4rem);
+    align-self: center;
+}
+
+@media all and (max-width: 600px) {
+    .main {
+        &__temperature {
+            
+            padding: 2vh;
+        }
+        &__search {
+            flex-direction: column;
+            &__submit-button {
+                align-self: center;
+            }
+    }
+
+    }
+    .footer {
+        &__predictions {
+            flex-direction: column;
+        }
+
+        .prediction {
+            align-items: center;
+            flex-direction: row;
+            width: 100vw;
+            padding: 0;
+            justify-content: space-between;
+            padding: 4vh;
+        }
+    }
+
+
+
+}
