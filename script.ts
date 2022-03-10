@@ -197,7 +197,6 @@ const weatherApp = {
   
         }
         
-        //tested
         for(let j = 0; j < tempTimeArr.length; j++) { 
             let stringArr = tempTimeArr[j][0].split('');
             let firstDigitDate = stringArr[8]; // again, getting the day date
@@ -207,11 +206,8 @@ const weatherApp = {
             
             let dateCheck: number = parseInt(`${firstDigitDate}${secondDigitDate}`);
             let hourCheck: number = parseInt(`${firstDigitHour}${secondDigitHour}`);
-            
-            
-            //arrays to calculate average temp 
 
-            //if tree to check which date we are dealing with  --- doesnt work
+            //if tree to check which date we are dealing with
 
             if(dateCheck == (initialDate + 1)) {
                 if(hourCheck > 7 && hourCheck < 22) {
@@ -364,7 +360,7 @@ const weatherApp = {
         
     },
 
-    getWeatherDescription(obj) { //html not yet implemented
+    getWeatherDescription(obj) {
         let weatherState: string = obj.weather[0].description;
         console.log(weatherState);
         this._weatherDescription = weatherState;
