@@ -7,6 +7,7 @@ const dateDisplay = document.getElementById('date-display');
 const townName = document.getElementById('city-display');
 const inputField = document.querySelector('.main__search__searchbar');
 const submitButton = document.querySelector('.main__search__submit-button');
+const weatherDescribed = document.querySelector('.weather-description');
 
 const prediction1Parent = document.getElementById('day1');
 const prediction2Parent = document.getElementById('day2');
@@ -14,10 +15,10 @@ const prediction3Parent = document.getElementById('day3');
 const prediction4Parent = document.getElementById('day4');
 
 
-const prediction1 = prediction1Parent.querySelector('.tempterature-display-prediction');
-const prediction2 = prediction2Parent.querySelector('.tempterature-display-prediction');
-const prediction3 = prediction3Parent.querySelector('.tempterature-display-prediction');
-const prediction4 = prediction4Parent.querySelector('.tempterature-display-prediction');
+const prediction1 = prediction1Parent.querySelector('.tempterature-display-prediction-number');
+const prediction2 = prediction2Parent.querySelector('.tempterature-display-prediction-number');
+const prediction3 = prediction3Parent.querySelector('.tempterature-display-prediction-number');
+const prediction4 = prediction4Parent.querySelector('.tempterature-display-prediction-number');
 
 
 const prediction1Display = prediction1Parent.querySelector('.prediction-date');
@@ -30,10 +31,10 @@ const prediction4Display = prediction4Parent.querySelector('.prediction-date');
 //loading screen 
 loading();
 
-let header = document.querySelector("header");
-let main = document.querySelector("main");
-let footer = document.querySelector("footer");
-let loader = document.getElementById("loader");
+const header = document.querySelector("header");
+const main = document.querySelector("main");
+const footer = document.querySelector("footer");
+const loader = document.getElementById("loader");
 
 
 function loading() {
@@ -41,6 +42,7 @@ function loading() {
         loader.style.opacity = '0';
         loader.style.display = 'none';
         
+        weatherApp.getDate();
         setTimeout(() => (header.style.opacity = '100'), 100);
         setTimeout(() => (main.style.opacity = '100'), 300);
         setTimeout(() => (footer.style.opacity = '100'), 500);
@@ -156,6 +158,7 @@ const weatherApp = {
         let townNameUppercased = inputCity.charAt(0).toLocaleUpperCase() + inputCity.slice(1);  //good enough for now           
         townName.innerHTML = townNameUppercased;
         let apiResponse = fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this._city}&appid=${this._apiKey}`)
+            
             .then((response) => response.json())
             .then((data) => this.filterJson(data))
             .catch((error) => console.log(`Request failed with reason: ${error}`))
@@ -174,8 +177,11 @@ const weatherApp = {
         
         for(let i = 0; i < obj.list.length; i++) {
             if(i == 0) { //separate the first one and display it on screen
-                this.getWeatherDescription();
+                
+                
                 let currentObject = obj.list[0]; // to obtain the initial temperature to be displayed 
+                this.getWeatherDescription(currentObject);
+                weatherDescribed.innerHTML = this._weatherDescription;
                 let currentTemp = currentObject.main.temp;
                 this._currentTemperature = Math.floor(currentTemp - 273.15); //kelvin to celsius with no float
                 
@@ -277,7 +283,6 @@ const weatherApp = {
     //presentation based on data
 
     showTemp(element, averageTemperature: number) {
-        console.log(element, averageTemperature);
         let theme = '';
         if(averageTemperature == undefined) {
             if(averageTemperature < 5) {
@@ -296,11 +301,11 @@ const weatherApp = {
         let temperature = 0;
         if(averageTemperature) { //this will be provded for all but first element
             temperature = averageTemperature;
-            element.innerHTML = `${temperature}°C`;
+            element.innerText = `${temperature}`;
             return;
         }
         temperature = this._currentTemperature;
-        element.innerHTML = `${temperature}°C`;
+        element.innerHTML = `${temperature}°`;
     },
 
     getDate() {
@@ -360,15 +365,8 @@ const weatherApp = {
     },
 
     getWeatherDescription(obj) { //html not yet implemented
-        //let weatherState: string = obj.weather.description;
-        //this._weatherDescription = weatherState;
+        let weatherState: string = obj.weather[0].description;
+        console.log(weatherState);
+        this._weatherDescription = weatherState;
     }
 }
-
-//icons to use 
-
-//wb_sunny
-//wb_cloudy
-//water_drop
-//air
-//thunderstorm

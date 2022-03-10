@@ -7,11 +7,10 @@ html {
 @include reset;
 
 * {
-    font-family: 'Zen Maru Gothic', sans-serif;
+    font-family: 'Manrope', sans-serif;
 }
 
 //loader
-
 
 @-webkit-keyframes wave {
     0% {
@@ -34,7 +33,6 @@ html {
                 transform: rotate(360deg);
     }
 }
-
 
 #loader {
     width: 250px;
@@ -69,7 +67,7 @@ html {
     position: absolute;
     bottom: 120px;
     background: rgb(255, 255, 255);
-    animation: wave 5s infinite;
+    animation: wave 4s infinite;
 }
 
 .main-content {
@@ -78,10 +76,9 @@ html {
 
 body {
     width: 100%;
-    background: #010101;
-    background: -webkit-radial-gradient(top left, #010101, $light-blue);
-    background: -moz-radial-gradient(top left, #010101, $light-blue);
-    background: radial-gradient(to bottom right, #010101, $light-blue);
+    background: -webkit-radial-gradient(top left, #d4d4d4, $light-blue);
+    background: -moz-radial-gradient(top left, #d4d4d4, $light-blue);
+    background: radial-gradient(to bottom right, #d4d4d4, $light-blue);
     background-size: cover;
     background-repeat: no-repeat;
     overflow-x: hidden;
@@ -90,7 +87,7 @@ body {
 .header {
     opacity: 0;
     transition: opacity 2s ease;
-    background-color: $light-blue;
+    
     display: flex;
     flex-direction: column;
     &__city {
@@ -119,8 +116,9 @@ body {
         flex-direction: row;
         gap: 4vw;
         &__searchbar {
-            background: none;
-            color: white;
+            background: white;
+            opacity: 60%;
+            color: black;
             text-align: center;
             height: 40px;
             border-radius: 20px;
@@ -135,6 +133,7 @@ body {
             height: 40px;
             width: 150px;
             border-radius: 20px;
+            background-color: rgb(255, 255, 255);
         }
     }
     &__temperature {
@@ -142,6 +141,7 @@ body {
         padding: 5vh;
         align-self: center;
         display: flex;
+        gap: 1vmax;
         flex-direction: row;
         align-self: center;
         p {
@@ -154,7 +154,7 @@ body {
 .footer {
     transition: opacity 2s ease;
     opacity: 0;
-    background-color: $light-blue;
+    
     display: flex;
     flex-direction: column;
     font-size: clamp(1vmax, 1vmax + 1rem, 2vmax);
@@ -186,6 +186,7 @@ body {
         display: flex;
         justify-content: center;
         &__signature {
+            font-size: 20px;
             color: $light-blue;
             a {
                 font-weight: bold;
@@ -196,16 +197,22 @@ body {
 }
 
 #temperature-display {
+    font-family: 'Noto Sans', sans-serif;
     display: flex;
     flex-direction: row;
+    gap: 0.2em;
+
 }
 
 .tempterature-display-prediction {
+    display: flex;
+    gap: 0.4em;
     color: white;
 }
 
-.material-icons {
-    font-size: clamp(6vmax, 8vw + 1rem, 4rem);
+.weather-description {
+    color: white;
+    font-size: clamp(1rem, 1rem + 1rem, 3rem);
     align-self: center;
 }
 
@@ -237,7 +244,4 @@ body {
             padding: 4vh;
         }
     }
-
-
-
 }
