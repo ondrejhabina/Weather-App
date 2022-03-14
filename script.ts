@@ -157,7 +157,7 @@ const weatherApp = {
         this._city = inputCity; 
         let townNameUppercased = inputCity.charAt(0).toLocaleUpperCase() + inputCity.slice(1);  //good enough for now           
         townName.innerHTML = townNameUppercased;
-        let apiResponse = fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this._city}&appid=${this._apiKey}`)
+        let apiResponse = fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this._city}&appid=${this._apiKey}`)
             
             .then((response) => response.json())
             .then((data) => this.filterJson(data))
